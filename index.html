@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<<<<<<< HEAD
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subli-Tech | Personalización sin Errores ni Incertidumbre</title>
+  <meta name="description" content="Subli-Tech: Plataforma integral para pedidos de sublimación. Catálogo interactivo, personalizador con validación gráfica, pago vía QR y trazabilidad en tiempo real." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== CSS VARIABLES & RESET ===== */
+    :root {
+      --primary: #6C5CE7;
+      --primary-dark: #5B2C6F;
+      --accent: #FD79A8;
+      --accent-dark: #E84393;
+      --bg-snow: #FAFAFA;
+      --bg-white: #FFFFFF;
+      --text-dark: #2D3436;
+      --text-gray: #636e72;
+      --border: #DFE6E9;
+      --green: #00B894;
+      --yellow: #FDCB6E;
+      --red: #D63031;
+      --gradient-brand: linear-gradient(135deg, #6C5CE7, #FD79A8);
+      --gradient-hero: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      --shadow-soft: 0 4px 24px rgba(108, 92, 231, 0.12);
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.08);
+      --shadow-float: 0 20px 60px rgba(108, 92, 231, 0.25);
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-snow);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ===== UTILITY CLASSES ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .gradient-text {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(108, 92, 231, 0.1);
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-gray);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-full);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--gradient-brand);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(253, 121, 168, 0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 30px rgba(253, 121, 168, 0.6);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-snow); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+    /* ===== NAVBAR ===== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(15, 12, 41, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(108, 92, 231, 0.2);
+      padding: 10px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 38px; height: 38px;
+      background: var(--gradient-brand);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(253, 121, 168, 0.4);
+    }
+    .nav-logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(108, 92, 231, 0.2);
+    }
+    .nav-cta {
+      background: var(--gradient-brand) !important;
+      color: #fff !important;
+      padding: 9px 20px !important;
+      border-radius: var(--radius-full) !important;
+      box-shadow: 0 4px 15px rgba(253,121,168,0.4) !important;
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(253,121,168,0.6) !important;
+    }
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      background: var(--gradient-hero);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+    .hero-bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      pointer-events: none;
+      animation: orbFloat 8s ease-in-out infinite alternate;
+    }
+    .hero-bg-orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #6C5CE7 0%, transparent 70%);
+      top: -100px; left: -100px;
+    }
+    .hero-bg-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #FD79A8 0%, transparent 70%);
+      bottom: -80px; right: -80px;
+      animation-delay: -4s;
+    }
+    .hero-bg-orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, #00B894 0%, transparent 70%);
+      top: 50%; right: 20%;
+      opacity: 0.15;
+      animation-delay: -2s;
+    }
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30px, 20px) scale(1.08); }
+    }
+    /* Animated grid lines */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(108,92,231,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108,92,231,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(108, 92, 231, 0.2);
+      border: 1px solid rgba(108, 92, 231, 0.4);
+      color: #a29bfe;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.6); }
+      50% { box-shadow: 0 0 0 6px rgba(0, 184, 148, 0); }
+    }
+    .hero-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-title span { background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat strong {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat span { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+
+    /* ===== PRODUCT MOCKUP CARD ===== */
+    .mockup-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mockup-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: var(--shadow-float);
+      animation: cardFloat 5s ease-in-out infinite;
+    }
+    @keyframes cardFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-16px); }
+    }
+    .mockup-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .mockup-tab {
+      padding: 7px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6);
+      background: transparent;
+    }
+    .mockup-tab.active {
+      background: var(--gradient-brand);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(253,121,168,0.4);
+    }
+    .product-display {
+      background: rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      padding: 40px 24px;
+      text-align: center;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-display::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-brand);
+      opacity: 0.04;
+      border-radius: var(--radius-md);
+    }
+    .product-emoji { font-size: 4rem; line-height: 1; transition: all 0.4s ease; }
+    .product-name { font-size: 0.9rem; color: rgba(255,255,255,0.8); font-weight: 500; }
+    .product-price {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .mockup-colors {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .color-dot {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .color-dot:hover, .color-dot.active { border-color: #fff; transform: scale(1.15); }
+    .mockup-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .mockup-badge-res {
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .badge-ok { background: rgba(0,184,148,0.15); color: var(--green); border: 1px solid rgba(0,184,148,0.3); }
+    .badge-warn { background: rgba(253,203,110,0.15); color: var(--yellow); border: 1px solid rgba(253,203,110,0.3); }
+    .badge-err { background: rgba(214,48,49,0.15); color: var(--red); border: 1px solid rgba(214,48,49,0.3); }
+    /* Floating particles around card */
+    .float-chip {
+      position: absolute;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.8);
+      white-space: nowrap;
+      animation: chipFloat 4s ease-in-out infinite;
+    }
+    .float-chip-1 { top: -10px; left: -40px; animation-delay: 0s; }
+    .float-chip-2 { bottom: 30px; right: -50px; animation-delay: -2s; }
+    .float-chip-3 { top: 40%; left: -60px; animation-delay: -1s; font-size: 0.8rem; }
+    @keyframes chipFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ===== FEATURES ===== */
+    #features {
+      padding: 100px 0;
+      background: var(--bg-white);
+    }
+    .features-header { text-align: center; margin-bottom: 60px; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .feature-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 36px 28px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-brand);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      border-radius: var(--radius-md);
+    }
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-float);
+      border-color: transparent;
+    }
+    .feature-card:hover::before { opacity: 0.04; }
+    .feature-card:hover .feature-icon { transform: scale(1.15) rotate(-5deg); }
+    .feature-icon {
+      width: 64px; height: 64px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      z-index: 1;
+    }
+    .feature-icon-1 { background: linear-gradient(135deg, rgba(108,92,231,0.15), rgba(108,92,231,0.05)); }
+    .feature-icon-2 { background: linear-gradient(135deg, rgba(253,121,168,0.15), rgba(253,121,168,0.05)); }
+    .feature-icon-3 { background: linear-gradient(135deg, rgba(0,184,148,0.15), rgba(0,184,148,0.05)); }
+    .feature-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative; z-index: 1;
+    }
+    .feature-desc { font-size: 0.92rem; color: var(--text-gray); line-height: 1.65; position: relative; z-index: 1; }
+    .feature-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      position: relative; z-index: 1;
+    }
+    .tag-purple { background: rgba(108,92,231,0.1); color: var(--primary); }
+    .tag-pink { background: rgba(253,121,168,0.1); color: var(--accent-dark); }
+    .tag-green { background: rgba(0,184,148,0.1); color: var(--green); }
+
+    /* ===== HOW IT WORKS ===== */
+    #como-funciona {
+      padding: 100px 0;
+      background: linear-gradient(180deg, var(--bg-snow) 0%, #f0eeff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #como-funciona::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(108,92,231,0.08) 0%, transparent 70%);
+      top: -200px; right: -200px;
+      pointer-events: none;
+    }
+    .steps-header { text-align: center; margin-bottom: 70px; }
+    .steps-timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .step-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 32px;
+      align-items: flex-start;
+      position: relative;
+    }
+    .step-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 39px;
+      top: 80px;
+      width: 2px;
+      height: calc(100% + 0px);
+      background: linear-gradient(to bottom, var(--primary), rgba(108,92,231,0.1));
+    }
+    .step-indicator {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      background: var(--bg-white);
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      z-index: 1;
+      transition: all 0.4s ease;
+      flex-shrink: 0;
+    }
+    .step-item:hover .step-indicator {
+      background: var(--gradient-brand);
+      border-color: transparent;
+      transform: scale(1.1);
+      box-shadow: var(--shadow-float);
+    }
+    .step-item:hover .step-number {
+      background: rgba(255,255,255,0.25);
+      color: #fff;
+    }
+    .step-number {
+      position: absolute;
+      top: -4px; right: -4px;
+      width: 22px; height: 22px;
+      background: var(--gradient-brand);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.4s ease;
+    }
+    .step-content {
+      padding: 28px 32px 40px;
+      background: var(--bg-white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      transition: all 0.4s ease;
+      margin-bottom: 0;
+    }
+    .step-item:hover .step-content {
+      box-shadow: var(--shadow-float);
+      border-color: rgba(108,92,231,0.2);
+      transform: translateX(6px);
+    }
+    .step-content h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+    .step-content p { font-size: 0.9rem; color: var(--text-gray); line-height: 1.65; }
+    .step-phases {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .phase-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .phase-design { background: rgba(108,92,231,0.1); color: var(--primary); }
+    .phase-print { background: rgba(253,203,110,0.15); color: #c8930a; }
+    .phase-iron { background: rgba(253,121,168,0.1); color: var(--accent-dark); }
+    .phase-sew { background: rgba(0,184,148,0.1); color: var(--green); }
+    .steps-wrapper { display: flex; flex-direction: column; gap: 28px; }
+
+    /* ===== BENEFITS & TESTIMONIALS ===== */
+    #beneficios {
+      padding: 100px 0;
+      background: var(--bg-white);
+    }
+    .benefits-header { text-align: center; margin-bottom: 60px; }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 70px;
+    }
+    .metric-card {
+      background: var(--gradient-hero);
+      border-radius: var(--radius-md);
+      padding: 40px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .metric-card:hover { transform: translateY(-6px); }
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(108,92,231,0.3) 0%, transparent 70%);
+      top: -60px; left: -60px;
+    }
+    .metric-card::after {
+      content: '';
+      position: absolute;
+      width: 150px; height: 150px;
+      background: radial-gradient(circle, rgba(253,121,168,0.2) 0%, transparent 70%);
+      bottom: -40px; right: -40px;
+    }
+    .metric-value {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 10px;
+      position: relative; z-index: 1;
+    }
+    .metric-label { color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 500; position: relative; z-index: 1; }
+    .metric-icon { font-size: 2rem; margin-bottom: 16px; position: relative; z-index: 1; }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--bg-snow);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .testimonial-card:hover {
+      box-shadow: var(--shadow-float);
+      transform: translateY(-5px);
+      border-color: rgba(108,92,231,0.2);
+    }
+    .testimonial-card::before {
+      content: '"';
+      font-size: 5rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      color: var(--primary);
+      opacity: 0.1;
+      position: absolute;
+      top: -10px; left: 20px;
+      line-height: 1;
+    }
+    .stars { color: #FDCB6E; font-size: 0.9rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .testimonial-text { font-size: 0.9rem; color: var(--text-gray); line-height: 1.7; margin-bottom: 20px; }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .author-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .author-name { font-weight: 600; font-size: 0.9rem; }
+    .author-role { font-size: 0.78rem; color: var(--text-gray); }
+
+    /* ===== TRACKING WIDGET ===== */
+    #rastreo {
+      padding: 100px 0;
+      background: var(--gradient-hero);
+      position: relative;
+      overflow: hidden;
+    }
+    #rastreo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(108,92,231,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108,92,231,0.08) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+    .tracking-wrapper { position: relative; z-index: 1; }
+    .tracking-header { text-align: center; margin-bottom: 50px; }
+    .tracking-header .section-title { color: #fff; }
+    .tracking-header .section-subtitle { color: rgba(255,255,255,0.65); }
+    .tracker-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      padding: 44px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .tracker-input-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .tracker-input {
+      flex: 1;
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-sm);
+      padding: 14px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.3s ease;
+      letter-spacing: 0.5px;
+    }
+    .tracker-input::placeholder { color: rgba(255,255,255,0.35); }
+    .tracker-input:focus { border-color: var(--primary); background: rgba(108,92,231,0.1); }
+    .btn-track {
+      background: var(--gradient-brand);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 14px 28px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(253,121,168,0.4);
+    }
+    .btn-track:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(253,121,168,0.6); }
+    .tracker-result { display: none; }
+    .tracker-result.visible { display: block; }
+    .order-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .order-code { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; }
+    .order-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .tracker-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      position: relative;
+      margin-bottom: 24px;
+    }
+    .tracker-steps::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 10%;
+      right: 10%;
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .track-progress-line {
+      position: absolute;
+      top: 24px;
+      left: 10%;
+      height: 3px;
+      background: var(--gradient-brand);
+      border-radius: 2px;
+      z-index: 1;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0;
+    }
+    .tracker-step { text-align: center; position: relative; z-index: 2; }
+    .tracker-step-dot {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      border: 3px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      transition: all 0.5s ease;
+    }
+    .tracker-step-dot.done {
+      background: var(--green);
+      border-color: var(--green);
+      box-shadow: 0 0 20px rgba(0,184,148,0.5);
+    }
+    .tracker-step-dot.active {
+      background: var(--gradient-brand);
+      border-color: transparent;
+      box-shadow: 0 0 25px rgba(253,121,168,0.6);
+      animation: activePulse 2s ease-in-out infinite;
+    }
+    @keyframes activePulse {
+      0%, 100% { box-shadow: 0 0 25px rgba(253,121,168,0.6); }
+      50% { box-shadow: 0 0 40px rgba(253,121,168,0.9); }
+    }
+    .tracker-step-label {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    .tracker-step.active-step .tracker-step-label { color: rgba(255,255,255,0.9); font-weight: 600; }
+    .tracker-step.done-step .tracker-step-label { color: rgba(0,184,148,0.9); }
+    .tracker-note {
+      text-align: center;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 8px;
+    }
+    .example-codes {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .code-chip {
+      padding: 5px 14px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .code-chip:hover { background: rgba(108,92,231,0.2); border-color: rgba(108,92,231,0.4); color: #fff; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0a0818;
+      padding: 70px 0 28px;
+      border-top: 1px solid rgba(108,92,231,0.2);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.45);
+      margin: 16px 0 24px;
+      line-height: 1.7;
+    }
+    .footer-socials { display: flex; gap: 10px; }
+    .social-btn {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-btn:hover {
+      background: var(--gradient-brand);
+      border-color: transparent;
+      color: #fff;
+      transform: translateY(-3px);
+    }
+    .footer-col h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 18px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 12px;
+    }
+    .contact-item span:first-child { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .schedule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,184,148,0.1);
+      border: 1px solid rgba(0,184,148,0.2);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      margin-top: 8px;
+    }
+    .footer-bottom {
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-size: 0.8rem; color: rgba(255,255,255,0.25); text-decoration: none; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 8, 24, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: #1a1635;
+      border: 1px solid rgba(108,92,231,0.3);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .modal-overlay.open .modal-box { transform: scale(1) translateY(0); }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .modal-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .modal-close {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .modal-close:hover { background: rgba(214,48,49,0.15); color: var(--red); border-color: var(--red); }
+    .modal-steps { display: flex; flex-direction: column; gap: 14px; }
+    .modal-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: rgba(255,255,255,0.04);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .modal-step-num {
+      width: 28px; height: 28px;
+      background: var(--gradient-brand);
+      border-radius: 50%;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .modal-step-text strong { display: block; font-size: 0.9rem; color: rgba(255,255,255,0.9); margin-bottom: 2px; }
+    .modal-step-text p { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+    .modal-cta { margin-top: 24px; width: 100%; justify-content: center; }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .metrics-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .mockup-wrapper { order: -1; }
+      .float-chip-1, .float-chip-2, .float-chip-3 { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; background: rgba(15,12,41,0.98); backdrop-filter: blur(20px); padding: 80px 24px 32px; gap: 4px; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 12px 16px; }
+      .hamburger { display: flex; }
+      .tracker-steps { grid-template-columns: repeat(3, 1fr); }
+      .tracker-steps::before { display: none; }
+      .track-progress-line { display: none; }
+      .tracker-input-row { flex-direction: column; }
+      .hero-stats { gap: 24px; }
+      .tracker-card { padding: 28px 20px; }
+      .step-item { grid-template-columns: 60px 1fr; gap: 16px; }
+      .step-indicator { width: 60px; height: 60px; font-size: 1.3rem; }
+      .step-item:not(:last-child)::after { left: 29px; top: 60px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .hero-stats { flex-direction: column; gap: 16px; }
+      .modal-box { padding: 24px 20px; }
+      .tracker-steps { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon">🎨</div>
+          <span class="nav-logo-text">Subli-Tech</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#features">Catálogo</a></li>
+          <li><a href="#features">Personalizador</a></li>
+          <li><a href="#como-funciona">Cómo Funciona</a></li>
+          <li><a href="#rastreo">Rastreo</a></li>
+          <li><a href="#" class="nav-cta" id="navCta" onclick="openModal(); return false;">Iniciar Pedido</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menú" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-bg-orb hero-bg-orb-1"></div>
+    <div class="hero-bg-orb hero-bg-orb-2"></div>
+    <div class="hero-bg-orb hero-bg-orb-3"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <!-- LEFT CONTENT -->
+        <div>
+          <div class="hero-badge">
+            <span class="dot"></span>
+            Plataforma activa · Sistema en línea
+          </div>
+          <h1 class="hero-title">
+            Personalización de Productos <span>sin Errores ni Incertidumbre.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Plasma tus ideas gráficas en poleras, tazas y gorras. Sube tu diseño, aprueba tu mockup digital en alta resolución y sigue tu pedido en tiempo real desde el taller a tu puerta.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="openModal()">
+              <span>✦</span> Personalizar Ahora
+            </button>
+            <a href="#features" class="btn btn-secondary">
+              <span>🗂️</span> Ver Catálogo Base
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>+500</strong>
+              <span>Pedidos completados</span>
+            </div>
+            <div class="hero-stat">
+              <strong>48h</strong>
+              <span>Tiempo de entrega</span>
+            </div>
+            <div class="hero-stat">
+              <strong>100%</strong>
+              <span>Arte aprobado</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: MOCKUP CARD -->
+        <div class="mockup-wrapper">
+          <div class="float-chip float-chip-1">✅ Resolución óptima</div>
+          <div class="float-chip float-chip-2">🎯 Mockup aprobado</div>
+          <div class="float-chip float-chip-3">📦 Pedido #ST-2026</div>
+          <div class="mockup-card">
+            <div class="mockup-tabs">
+              <button class="mockup-tab active" onclick="switchProduct('polera', this)">👕 Polera</button>
+              <button class="mockup-tab" onclick="switchProduct('taza', this)">☕ Taza</button>
+              <button class="mockup-tab" onclick="switchProduct('gorra', this)">🧢 Gorra</button>
+            </div>
+            <div class="product-display">
+              <div class="product-emoji" id="productEmoji">👕</div>
+              <div class="product-name" id="productName">Polera Premium Sublimación Total</div>
+              <div class="product-price" id="productPrice">S/ 45.00 — S/ 38.00 (×12)</div>
+            </div>
+            <div class="mockup-colors">
+              <div class="color-dot active" style="background:#fff;border-color:#6C5CE7" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#2D3436" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#6C5CE7" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#FD79A8" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#00B894" onclick="selectColor(this)"></div>
+              <div class="color-dot" style="background:#FDCB6E" onclick="selectColor(this)"></div>
+            </div>
+            <div class="mockup-footer">
+              <div class="mockup-badge-res badge-ok" id="resBadge">
+                <span>●</span> Resolución óptima
+              </div>
+              <button class="btn btn-primary" style="padding:9px 18px;font-size:0.82rem;" onclick="openModal()">
+                Personalizar →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section id="features">
+    <div class="container">
+      <div class="features-header fade-in">
+        <div class="section-label">✦ Características Principales</div>
+        <h2 class="section-title">Todo lo que necesitas para <span class="gradient-text">un pedido perfecto</span></h2>
+        <p class="section-subtitle" style="margin-top:12px;">Tecnología avanzada al servicio de la sublimación artesanal de alta calidad.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fade-in fade-in-delay-1">
+          <div class="feature-icon feature-icon-1">🗂️</div>
+          <h3 class="feature-title">Catálogo e Insumos "Blanco"</h3>
+          <p class="feature-desc">Explora poleras, tazas y gorras de alta calidad sublimables. Compara especificaciones técnicas, filtra por tipo y calcula precios con descuentos automáticos por volumen desde 6 unidades.</p>
+          <div class="feature-tag tag-purple">📦 +30 productos disponibles</div>
+        </div>
+        <div class="feature-card fade-in fade-in-delay-2">
+          <div class="feature-icon feature-icon-2">🖼️</div>
+          <h3 class="feature-title">Personalizador con Validación Gráfica</h3>
+          <p class="feature-desc">Módulo inteligente que analiza tu archivo PNG/JPG al cargarlo. Detecta y alerta automáticamente si la resolución es inferior a 150 DPI antes de proceder a impresión, evitando resultados pixelados.</p>
+          <div class="feature-tag tag-pink">🔍 Validación en tiempo real</div>
+        </div>
+        <div class="feature-card fade-in fade-in-delay-3">
+          <div class="feature-icon feature-icon-3">📡</div>
+          <h3 class="feature-title">Trazabilidad en Tiempo Real</h3>
+          <p class="feature-desc">Seguimiento paso a paso del estado de producción con sistema semafórico claro: diseño → impresión → planchado → costura → entrega. Notificaciones automáticas en cada etapa.</p>
+          <div class="feature-tag tag-green">🟢 Estado actualizado al instante</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section id="como-funciona">
+    <div class="container">
+      <div class="steps-header fade-in">
+        <div class="section-label">📋 Proceso de Pedido</div>
+        <h2 class="section-title">Cómo funciona <span class="gradient-text">Subli-Tech</span></h2>
+        <p class="section-subtitle" style="margin-top:12px;">Del diseño a tu puerta en 5 pasos simples y completamente trazables.</p>
+      </div>
+      <div class="steps-wrapper">
+
+        <div class="step-item fade-in">
+          <div class="step-indicator">
+            🛍️
+            <span class="step-number">1</span>
+          </div>
+          <div class="step-content">
+            <h3>Selección del Producto</h3>
+            <p>Elige tu base desde el catálogo interactivo: polera de sublimación total, taza de 11oz cerámica, o gorra con panel frontal sublimable. Define talla, color base y cantidad. Visualiza el precio unitario y descuentos por volumen aplicables en tiempo real.</p>
+          </div>
+        </div>
+
+        <div class="step-item fade-in fade-in-delay-1">
+          <div class="step-indicator">
+            🎨
+            <span class="step-number">2</span>
+          </div>
+          <div class="step-content">
+            <h3>Personalización y Mockup Digital</h3>
+            <p>Sube tu archivo de diseño (PNG/JPG). El sistema valida automáticamente la resolución (mínimo 150 DPI recomendado, ideal 300 DPI). Genera un mockup fotorrealista del producto final para tu aprobación antes de iniciar producción.</p>
+          </div>
+        </div>
+
+        <div class="step-item fade-in fade-in-delay-2">
+          <div class="step-indicator">
+            📱
+            <span class="step-number">3</span>
+          </div>
+          <div class="step-content">
+            <h3>Pago de Anticipo (50%) vía QR</h3>
+            <p>Una vez aprobado el mockup, escanea el código QR institucional generado para confirmar tu orden con el 50% de anticipo obligatorio. El sistema registra el pago y activa automáticamente la orden en el sistema de taller.</p>
+          </div>
+        </div>
+
+        <div class="step-item fade-in fade-in-delay-3">
+          <div class="step-indicator">
+            🏭
+            <span class="step-number">4</span>
+          </div>
+          <div class="step-content">
+            <h3>Fabricación en Taller — Fases Secuenciales</h3>
+            <p>Tu pedido avanza por las fases de producción con trazabilidad completa. Cada cambio de estado genera una notificación automática para que siempre sepas dónde está tu pedido.</p>
+            <div class="step-phases">
+              <span class="phase-badge phase-design">🖌️ En diseño</span>
+              <span style="color:rgba(0,0,0,0.3);font-size:1rem;line-height:2">→</span>
+              <span class="phase-badge phase-print">🖨️ En impresión</span>
+              <span style="color:rgba(0,0,0,0.3);font-size:1rem;line-height:2">→</span>
+              <span class="phase-badge phase-iron">♨️ En planchado</span>
+              <span style="color:rgba(0,0,0,0.3);font-size:1rem;line-height:2">→</span>
+              <span class="phase-badge phase-sew">🧵 En costura</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item fade-in">
+          <div class="step-indicator">
+            📦
+            <span class="step-number">5</span>
+          </div>
+          <div class="step-content">
+            <h3>Entrega o Recojo — ¡Tu Pedido Listo!</h3>
+            <p>Recibes una notificación push/SMS cuando tu pedido esté en estado "Listo para entrega". Coordina el recojo en taller o el despacho a domicilio y realiza el pago del saldo restante (50%) para completar la transacción.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BENEFITS & TESTIMONIALS ===== -->
+  <section id="beneficios">
+    <div class="container">
+      <div class="benefits-header fade-in">
+        <div class="section-label">📊 Impacto y Confianza</div>
+        <h2 class="section-title">Resultados que <span class="gradient-text">hablan por sí solos</span></h2>
+        <p class="section-subtitle" style="margin-top:12px;">Métricas reales que demuestran la eficiencia de nuestra plataforma.</p>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card fade-in fade-in-delay-1">
+          <div class="metric-icon">⚡</div>
+          <div class="metric-value">25%</div>
+          <div class="metric-label">Más Rápido en Tiempos de Respuesta al Cliente</div>
+        </div>
+        <div class="metric-card fade-in fade-in-delay-2">
+          <div class="metric-icon">✅</div>
+          <div class="metric-value">100%</div>
+          <div class="metric-label">Garantía de Arte Final Aprobado antes de Producción</div>
+        </div>
+        <div class="metric-card fade-in fade-in-delay-3">
+          <div class="metric-icon">🎯</div>
+          <div class="metric-value">0%</div>
+          <div class="metric-label">Errores de Impresión por Resolución Inadecuada</div>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Poppins',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:28px;text-align:center;" class="fade-in">
+        Lo que dicen nuestros clientes
+      </h3>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card fade-in fade-in-delay-1">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Increíble plataforma. Antes coordinaba todo por WhatsApp y era un caos. Ahora subo mi diseño, veo el mockup al toque y sigo mi pedido en tiempo real. ¡Super recomendado!"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#6C5CE7,#FD79A8)">M</div>
+            <div>
+              <div class="author-name">Mariana R.</div>
+              <div class="author-role">Cliente particular · Lima</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in fade-in-delay-2">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Pedimos 50 poleras para el evento corporativo. El sistema de trazabilidad fue clave para coordinar con nuestro equipo. La validación de DPI nos salvó de un error enorme en el diseño."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#00B894,#6C5CE7)">C</div>
+            <div>
+              <div class="author-name">Carlos V.</div>
+              <div class="author-role">Jefe de Marketing · Empresa TechPeru S.A.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in fade-in-delay-3">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Somos una asociación universitaria y usamos Subli-Tech para nuestros merch. El QR de anticipo es súper seguro y transparente. El proceso fluye perfecto sin necesitar llamar a nadie."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#FD79A8,#FDCB6E)">A</div>
+            <div>
+              <div class="author-name">Asociación FIEE</div>
+              <div class="author-role">Institución Universitaria · UNI</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRACKING WIDGET ===== -->
+  <section id="rastreo">
+    <div class="container">
+      <div class="tracking-wrapper">
+        <div class="tracking-header fade-in">
+          <div class="section-label" style="background:rgba(108,92,231,0.2);color:#a29bfe;">📡 Módulo de Rastreo</div>
+          <h2 class="section-title">Rastrea tu pedido <span class="gradient-text">en tiempo real</span></h2>
+          <p class="section-subtitle" style="color:rgba(255,255,255,0.6);margin-top:12px;">Ingresa tu código de pedido y visualiza el estado actual de producción en taller.</p>
+        </div>
+
+        <div class="tracker-card fade-in">
+          <div class="tracker-input-row">
+            <input
+              type="text"
+              class="tracker-input"
+              id="trackingInput"
+              placeholder="Ej: ST-2026, ST-1001, ST-0555..."
+              oninput="this.value = this.value.toUpperCase()"
+              onkeydown="if(event.key==='Enter') trackOrder()"
+            />
+            <button class="btn-track" id="trackBtn" onclick="trackOrder()">
+              🔍 Rastrear
+            </button>
+          </div>
+
+          <div class="example-codes">
+            <span style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-right:4px;">Probar:</span>
+            <span class="code-chip" onclick="tryCode('ST-2026')">ST-2026</span>
+            <span class="code-chip" onclick="tryCode('ST-1001')">ST-1001</span>
+            <span class="code-chip" onclick="tryCode('ST-0555')">ST-0555</span>
+            <span class="code-chip" onclick="tryCode('ST-9999')">ST-9999</span>
+          </div>
+
+          <div class="tracker-result" id="trackerResult">
+            <div style="height:1px;background:rgba(255,255,255,0.08);margin:28px 0;"></div>
+            <div class="order-info">
+              <div>
+                <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-bottom:4px;">Código de Pedido</div>
+                <div class="order-code" id="resultCode">ST-2026</div>
+              </div>
+              <div class="order-status-badge" id="statusBadge"></div>
+            </div>
+
+            <div class="tracker-steps" id="trackerSteps">
+              <div class="track-progress-line" id="progressLine"></div>
+              <!-- Steps inserted by JS -->
+            </div>
+            <div class="tracker-note" id="trackerNote"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="contacto">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo" style="margin-bottom:4px;display:inline-flex;">
+            <div class="nav-logo-icon">🎨</div>
+            <span class="nav-logo-text">Subli-Tech</span>
+          </a>
+          <p>Plataforma integral para la automatización del ciclo de vida de pedidos de sublimación. Tecnología, precisión y confianza en cada estampa.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" title="Instagram">📸</a>
+            <a href="#" class="social-btn" title="Facebook">📘</a>
+            <a href="#" class="social-btn" title="WhatsApp">💬</a>
+            <a href="#" class="social-btn" title="TikTok">🎵</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Plataforma</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Inicio</a></li>
+            <li><a href="#features">Catálogo de Productos</a></li>
+            <li><a href="#features">Personalizador Gráfico</a></li>
+            <li><a href="#como-funciona">Cómo Funciona</a></li>
+            <li><a href="#rastreo">Rastrear Pedido</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal y Políticas</h4>
+          <ul class="footer-links">
+            <li><a href="#">Validación Técnica de Archivos</a></li>
+            <li><a href="#">Política de Anticipos (QR)</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+            <li><a href="#">Garantía de Arte Final</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto y Taller</h4>
+          <div class="contact-item">
+            <span>📍</span>
+            <span>Av. Tecnológica 1247, Independencia, Lima, Perú</span>
+          </div>
+          <div class="contact-item">
+            <span>📞</span>
+            <span>+51 987 654 321</span>
+          </div>
+          <div class="contact-item">
+            <span>✉️</span>
+            <span>pedidos@sublitech.pe</span>
+          </div>
+          <div class="contact-item">
+            <span>⏰</span>
+            <span>Lun – Sáb: 9:00 AM – 7:00 PM</span>
+          </div>
+          <div class="schedule-badge">
+            <span>●</span> Taller operativo hoy
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Subli-Tech — Todos los derechos reservados. Hecho con ❤️ en Perú.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Política de Privacidad</a>
+          <a href="#">Términos de Uso</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== MODAL INICIAR PEDIDO ===== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+    <div class="modal-box" id="modalBox">
+      <div class="modal-header">
+        <div class="modal-title">✦ Iniciar tu Pedido</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <p style="font-size:0.88rem;color:rgba(255,255,255,0.5);margin-bottom:24px;">Sigue estos pasos para completar tu pedido personalizado en Subli-Tech.</p>
+      <div class="modal-steps">
+        <div class="modal-step">
+          <div class="modal-step-num">1</div>
+          <div class="modal-step-text">
+            <strong>Elige tu producto base</strong>
+            <p>Polera, taza o gorra desde nuestro catálogo interactivo.</p>
+          </div>
+        </div>
+        <div class="modal-step">
+          <div class="modal-step-num">2</div>
+          <div class="modal-step-text">
+            <strong>Sube tu archivo de diseño</strong>
+            <p>PNG o JPG. Recomendado: 300 DPI para calidad óptima.</p>
+          </div>
+        </div>
+        <div class="modal-step">
+          <div class="modal-step-num">3</div>
+          <div class="modal-step-text">
+            <strong>Aprueba el mockup digital</strong>
+            <p>Visualiza el arte final antes de cualquier compromiso.</p>
+          </div>
+        </div>
+        <div class="modal-step">
+          <div class="modal-step-num">4</div>
+          <div class="modal-step-text">
+            <strong>Confirma con anticipo QR (50%)</strong>
+            <p>Escanea el QR institucional para activar la orden de producción.</p>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary modal-cta" onclick="closeModal()">
+        🚀 Comenzar ahora — Ir al catálogo
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // --- NAVBAR SCROLL ---
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // --- HAMBURGER MENU ---
+    function toggleMenu() {
+      const links = document.getElementById('navLinks');
+      links.classList.toggle('open');
+    }
+    document.getElementById('navLinks').querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+
+    // --- MODAL ---
+    function openModal() {
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // --- PRODUCT MOCKUP SWITCHER ---
+    const products = {
+      polera: { emoji: '👕', name: 'Polera Premium Sublimación Total', price: 'S/ 45.00 — S/ 38.00 (×12)', res: 'badge-ok', resText: '✅ Resolución óptima' },
+      taza:   { emoji: '☕', name: 'Taza Cerámica 11oz Sublimable', price: 'S/ 28.00 — S/ 22.00 (×24)', res: 'badge-ok', resText: '✅ Resolución óptima' },
+      gorra:  { emoji: '🧢', name: 'Gorra Panel Frontal Sublimable', price: 'S/ 35.00 — S/ 29.00 (×18)', res: 'badge-warn', resText: '⚠️ Resolución moderada' },
+    };
+    function switchProduct(type, btn) {
+      const p = products[type];
+      const emojiEl = document.getElementById('productEmoji');
+      emojiEl.style.transform = 'scale(0.5) rotate(-10deg)';
+      emojiEl.style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('productEmoji').textContent = p.emoji;
+        document.getElementById('productName').textContent = p.name;
+        document.getElementById('productPrice').textContent = p.price;
+        const badge = document.getElementById('resBadge');
+        badge.className = 'mockup-badge-res ' + p.res;
+        badge.innerHTML = p.resText;
+        emojiEl.style.transform = 'scale(1) rotate(0deg)';
+        emojiEl.style.opacity = '1';
+      }, 200);
+      emojiEl.style.transition = 'all 0.2s ease';
+      document.querySelectorAll('.mockup-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // --- COLOR DOTS ---
+    function selectColor(dot) {
+      document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+    }
+
+    // --- TRACKING WIDGET ---
+    const orderData = {
+      'ST-2026': { step: 3, status: '🟡 En impresión', statusClass: 'badge-warn', note: 'Tu pedido está siendo impreso en el taller. Tiempo estimado de finalización: hoy 5:00 PM.' },
+      'ST-1001': { step: 5, status: '🟢 Listo para entrega', statusClass: 'badge-ok', note: '¡Tu pedido está listo! Puedes recogerlo en el taller o coordinar el despacho.' },
+      'ST-0555': { step: 1, status: '🟣 En diseño', statusClass: 'badge-warn', note: 'Tu arte está siendo preparado por el equipo de diseño. Recibirás el mockup pronto.' },
+      'ST-9999': { step: 4, status: '🟠 En planchado', statusClass: 'badge-warn', note: 'El proceso de termo-sublimación (planchado) está en curso. ¡Ya casi está!' },
+    };
+    const stepInfo = [
+      { icon: '🖌️', label: 'En diseño' },
+      { icon: '✅', label: 'Mockup aprobado' },
+      { icon: '🖨️', label: 'En impresión' },
+      { icon: '♨️', label: 'En planchado' },
+      { icon: '📦', label: 'Listo' },
+    ];
+    function tryCode(code) {
+      document.getElementById('trackingInput').value = code;
+      trackOrder();
+    }
+    function trackOrder() {
+      const code = document.getElementById('trackingInput').value.trim().toUpperCase();
+      const resultDiv = document.getElementById('trackerResult');
+      const btn = document.getElementById('trackBtn');
+
+      if (!code) {
+        document.getElementById('trackingInput').style.borderColor = 'var(--red)';
+        setTimeout(() => document.getElementById('trackingInput').style.borderColor = '', 1500);
+        return;
+      }
+
+      btn.textContent = '⏳ Buscando...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.textContent = '🔍 Rastrear';
+        btn.disabled = false;
+
+        const order = orderData[code];
+        if (!order) {
+          resultDiv.classList.add('visible');
+          document.getElementById('resultCode').textContent = code;
+          document.getElementById('statusBadge').className = 'order-status-badge badge-err';
+          document.getElementById('statusBadge').textContent = '❌ Pedido no encontrado';
+          document.getElementById('trackerSteps').innerHTML = '';
+          document.getElementById('trackerNote').textContent = 'El código ingresado no existe en nuestro sistema. Verifica el código enviado a tu correo.';
+          document.getElementById('progressLine').style.width = '0';
+          return;
+        }
+
+        resultDiv.classList.add('visible');
+        document.getElementById('resultCode').textContent = code;
+        const badge = document.getElementById('statusBadge');
+        badge.className = 'order-status-badge ' + order.statusClass;
+        badge.textContent = order.status;
+        document.getElementById('trackerNote').textContent = order.note;
+
+        // Build steps
+        const stepsContainer = document.getElementById('trackerSteps');
+        stepsContainer.innerHTML = '<div class="track-progress-line" id="progressLine"></div>';
+        stepInfo.forEach((s, i) => {
+          const div = document.createElement('div');
+          const stepIdx = i + 1;
+          let cls = 'tracker-step';
+          let dotCls = 'tracker-step-dot';
+          if (stepIdx < order.step) { cls += ' done-step'; dotCls += ' done'; }
+          else if (stepIdx === order.step) { cls += ' active-step'; dotCls += ' active'; }
+          div.className = cls;
+          div.innerHTML = `<div class="${dotCls}">${stepIdx < order.step ? '✓' : s.icon}</div><div class="tracker-step-label">${s.label}</div>`;
+          stepsContainer.appendChild(div);
+        });
+
+        // Animate progress line
+        setTimeout(() => {
+          const line = document.getElementById('progressLine');
+          if (line) {
+            const pct = Math.min(((order.step - 1) / (stepInfo.length - 1)) * 80, 80);
+            line.style.width = pct + '%';
+          }
+        }, 100);
+      }, 900);
+    }
+
+    // --- INTERSECTION OBSERVER (Animations) ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // --- COUNTER ANIMATION ---
+    function animateCounters() {
+      document.querySelectorAll('.metric-value').forEach(el => {
+        const text = el.textContent.trim();
+        const isPercent = text.includes('%');
+        const num = parseInt(text.replace(/[^0-9]/g, ''));
+        if (isNaN(num)) return;
+        let start = 0;
+        const duration = 1800;
+        const step = (timestamp) => {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(eased * num);
+          el.textContent = current + (isPercent ? '%' : '');
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    }
+    const metricsObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        animateCounters();
+        metricsObserver.disconnect();
+      }
+    }, { threshold: 0.3 });
+    const metricsSection = document.querySelector('.metrics-grid');
+    if (metricsSection) metricsObserver.observe(metricsSection);
+  </script>
+</body>
+</html>
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App de Usuarios - PocketBase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Usuarios</h1>
+
+        <div class="card">
+            <h2>Registrar Nuevo Usuario</h2>
+            <form id="user-form">
+                <input type="email" id="email" placeholder="Correo electrónico" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <input type="text" id="rol" placeholder="Rol (ej. Admin, User)" required>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Lista de Usuarios (Tiempo Real)</h2>
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="users-tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.21.3/dist/pocketbase.umd.js"></script>
+    <!-- Nuestro archivo de lógica -->
+    <script src="app.js"></script>
+</body>
+</html>
+>>>>>>> c387fdd73dac5bd0d1ae97a5d1e9ef188a7a1961
